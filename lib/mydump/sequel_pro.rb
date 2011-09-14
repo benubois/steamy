@@ -7,15 +7,15 @@ module Mydump
     
     attr_reader :connections
     
-    def initialize
-      @plist_dir = ""
+    def initialize(settings)
+      @settings = settings
       @connections = connections
     end
     
     def connections
       connections = {}
       
-      Dir.chdir(@plist_dir)
+      Dir.chdir(@settings[:saved_connections])
 
       # For each vhost replace the DOCUMENT_ROOT and write back out to sites-enabled
       Dir.glob("*.spf") do |file|
