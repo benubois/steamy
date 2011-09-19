@@ -1,7 +1,7 @@
 mydump
 ======
 
-mydump, backup MySQL Databases
+mydump, export remote MySQL Databases
 
 Why
 ---

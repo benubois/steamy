@@ -1,7 +1,6 @@
 require "mydump/version"
 require "mydump/config"
 require "mydump/sequel_pro"
-require "pp"
 
 module Mydump
   class Mydump

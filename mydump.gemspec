@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Ben Ubois"]
   s.email       = ["ben@benubois.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{Export remote MySQL Databases}
+  s.description = %q{mydump exports remote MySQL databases using SequelPro saved connections.}
 
   s.rubyforge_project = "mydump"
 
