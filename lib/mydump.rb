@@ -6,34 +6,43 @@ require "pp"
 module Mydump
   class Mydump
     
-    def initialize(host, database = nil)
+    def initialize(host = nil, database = nil)
+      
       @settings = Config.config
       @settings[:saved_connections] = File.expand_path(@settings[:saved_connections])
       @host = host
       
-      sequel_pro = SequelPro.new(@settings)
-      @connections = sequel_pro.connections
+      @sequel_pro = SequelPro.new(@settings)
+      @connections = @sequel_pro.connections
+
+      if @host.nil? || @connections[@host].nil?
+        puts "no host #{@host}, available hosts:"
+        list
+        exit 1
+      end
       
-      @ssh      = "ssh #{@connections[@host]['ssh_host']}"
+      @ssh      = "ssh #{@host}"
       @user     = (@connections[@host]['user'].nil?) ? '' :  "-u #{@connections[@host]['user']}"
-      @password = (@connections[@host]['password'].nil?) ? '' :  "-p#{@connections[@host]['password']}"
+      @password = (@connections[@host]['password'].nil?) ? '' :  "-p\"#{@connections[@host]['password']}\""
       @database = database
     end
     
     def remote_exec(command)
-      # puts "#{@ssh} #{command}"
-      `#{@ssh} '#{command}'`
+      command =  "#{@ssh} #{command}"
+      `#{command}`
     end
     
     def show_databases
       remote_exec(sprintf('\'mysql -e "show databases" %s %s\'', @user, @password))
     end
     
+    def list
+      @sequel_pro.available_connections
+    end
+    
     def get_database
       databases = show_databases.split("\n")
       
-      pp databases
-
       puts "Choose a database to dump:"
       databases.each_with_index do |db, i|
         unless 
@@ -50,13 +59,10 @@ module Mydump
       if @database.nil?
         @database = get_database
       end
-      remote_exec(sprintf("mysqldump '%s %s %s | gzip -c' > ~/Desktop/db.sql", @user, @password, @database))
+      timestamp = Time.now.strftime("%Y-%m-%d_%H%M%S")
+      name = "#{@host}_#{@database}_#{timestamp}.sql.gz"
+      remote_exec("'mysqldump #{@user} #{@password} #{@database} | gzip -c' > ~/Desktop/#{name}")
     end
     
   end
 end
-
-
-
-preview = Mydump::Mydump.new('', 'mysql')
-preview.mysqldump

@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+#/ Usage: mydump HOST DATABASE
+#/
+require 'mydump'
+require 'optparse'
+
+def usage
+  puts File.readlines(__FILE__).
+    grep(/^#\/.*/).
+    map { |line| line.chomp[3..-1] }.
+    join("\n")
+end
+
+options = {}
+
+optparse = OptionParser.new do |opts| 
+  
+  opts.on('-v', '--version') do
+    puts Mydump::VERSION
+    exit 0
+  end
+
+  opts.on('-h', '--help', 'Display help info') do
+    usage
+    exit 0
+  end
+end
+
+begin
+  optparse.parse!
+  
+  # The url has no flag and will be in ARGV[0] if it's set
+  options[:host] = ARGV[0] || nil
+  options[:database] = ARGV[1] || nil
+
+  # Reset ARGV for gets later
+  ARGV.clear
+
+rescue OptionParser::InvalidOption, OptionParser::MissingArgument
+  puts $!.to_s
+  usage
+  exit 1
+end
+
+preview = Mydump::Mydump.new(options[:host], options[:database])
+preview.mysqldump
