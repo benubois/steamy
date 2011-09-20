@@ -44,9 +44,7 @@ module Mydump
       
       puts "Choose a database to dump:"
       databases.each_with_index do |db, i|
-        unless 
-          puts i.to_s + ': ' + db
-        end
+        puts i.to_s + ': ' + db
       end
 
       # Get index from user

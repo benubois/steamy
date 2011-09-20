@@ -27,8 +27,11 @@ module Mydump
     end
     
     def available_connections
-      @connections.each do |index, data|
-        puts index
+      keys = @connections.keys
+      keys.reject! { |name| name.nil? }
+      keys.sort!
+      keys.each do |name|
+        puts name
       end
     end
     
