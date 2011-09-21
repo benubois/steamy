@@ -24,3 +24,10 @@ Install by running
     $ gem install mydump
 
 mydump will look for a YAML file located in ~/.mydump which specifies the SequelPro saved connections directory.
+
+The format of the file should look like:
+
+    ---
+    :saved_connections: /path/to/db
+
+The path supports path expansion so something like `~/Databases` would work too.
