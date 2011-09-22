@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
-#/ Usage: mydump HOST DATABASE
+#/ Usage: steamy HOST DATABASE
 #/
-require 'mydump'
+require 'steamy'
 require 'optparse'
 
 def usage
@@ -16,7 +16,7 @@ options = {}
 optparse = OptionParser.new do |opts| 
   
   opts.on('-v', '--version') do
-    puts Mydump::VERSION
+    puts Steamy::VERSION
     exit 0
   end
 
@@ -42,5 +42,5 @@ rescue OptionParser::InvalidOption, OptionParser::MissingArgument
   exit 1
 end
 
-preview = Mydump::Mydump.new(options[:host], options[:database])
+preview = Steamy::Steamy.new(options[:host], options[:database])
 preview.mysqldump

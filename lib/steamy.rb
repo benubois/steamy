@@ -1,9 +1,9 @@
-require "mydump/version"
-require "mydump/config"
-require "mydump/sequel_pro"
+require "steamy/version"
+require "steamy/config"
+require "steamy/sequel_pro"
 
-module Mydump
-  class Mydump
+module Steamy
+  class Steamy
     
     def initialize(host = nil, database = nil)
       

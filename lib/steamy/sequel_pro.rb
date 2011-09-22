@@ -2,7 +2,7 @@ require 'rubygems'
 require 'plist'
 require 'pp'
 
-module Mydump
+module Steamy
   class SequelPro
     
     attr_reader :connections

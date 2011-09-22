@@ -1,17 +1,17 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "mydump/version"
+require "steamy/version"
 
 Gem::Specification.new do |s|
-  s.name        = "mydump"
-  s.version     = Mydump::VERSION
+  s.name        = "steamy"
+  s.version     = Steamy::VERSION
   s.authors     = ["Ben Ubois"]
   s.email       = ["ben@benubois.com"]
   s.homepage    = ""
   s.summary     = %q{Export remote MySQL Databases}
-  s.description = %q{mydump exports remote MySQL databases using SequelPro saved connections.}
+  s.description = %q{steamy exports remote MySQL databases using SequelPro saved connections.}
 
-  s.rubyforge_project = "mydump"
+  s.rubyforge_project = "steamy"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

@@ -1,16 +1,16 @@
-mydump
+steamy
 ======
 
-mydump, export remote MySQL Databases
+steamy, export remote MySQL Databases
 
 Why
 ---
 
-mydump has several advantages over mysqldump (and many disadvantages).
+steamy has several advantages over mysqldump (and many disadvantages).
 
-The main goal of mydump is to make it easy to backup remote MySQL databases. mydump makes database backups fast by relying on SequelPro Saved connections, SSH public keys to the MySQL server your trying to backup from and by running gzip on the sql dump before downloading it to your local machine.
+The main goal of steamy is to make it easy to backup remote MySQL databases. steamy makes database backups fast by relying on SequelPro Saved connections, SSH public keys to the MySQL server your trying to backup from and by running gzip on the sql dump before downloading it to your local machine.
 
-This means that mydump has several requirements.
+This means that steamy has several requirements.
 
 1. You must have a SequelPro saved connection.
 2. You must have password-less SSH to the remote server using public keys. 
@@ -21,9 +21,9 @@ Usage
 
 Install by running
 
-    $ gem install mydump
+    $ gem install steamy
 
-mydump will look for a YAML file located in ~/.mydump which specifies the SequelPro saved connections directory.
+steamy will look for a YAML file located in ~/.steamy which specifies the SequelPro saved connections directory.
 
 The format of the file should look like:
 
