@@ -23,7 +23,18 @@ module Steamy
       @ssh      = "ssh #{@host}"
       @user     = (@connections[@host]['user'].nil?) ? '' :  "-u #{@connections[@host]['user']}"
       @password = (@connections[@host]['password'].nil?) ? '' :  "-p\"#{@connections[@host]['password']}\""
-      @database = database
+      @database = set_database(host, database)
+    end
+    
+    def set_database(host, database)
+      if host.nil? || @connections[@host]['database'].nil? || database
+        database = database
+      else
+        puts "This user can only access '#{@connections[@host]['database']}', update credentials to access other databases or specify database to dump."
+        exit 1
+      end
+      
+      database
     end
     
     def remote_exec(command)
