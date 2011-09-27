@@ -21,8 +21,8 @@ module Steamy
       end
       
       @ssh      = "ssh #{@host}"
-      @user     = (@connections[@host]['user'].nil?) ? '' :  "-u #{@connections[@host]['user']}"
-      @password = (@connections[@host]['password'].nil?) ? '' :  "-p\"#{@connections[@host]['password']}\""
+      @user     = (@connections[@host]['user'].empty?) ? '' :  "-u #{@connections[@host]['user']}"
+      @password = (@connections[@host]['password'].empty?) ? '' :  "-p\"#{@connections[@host]['password']}\""
       @database = set_database(host, database)
     end
     
