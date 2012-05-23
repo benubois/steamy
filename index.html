@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Steamy by benubois</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Steamy</h1>
+        <p>Remote MySQL Dumps</p>
+        <p class="view"><a href="https://github.com/benubois/steamy">View the Project on GitHub <small>benubois/steamy</small></a></p>
+        <ul>
+          <li><a href="https://github.com/benubois/steamy/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/benubois/steamy/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/benubois/steamy">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>steamy</h1>
+
+<p>steamy, export remote MySQL Databases</p>
+
+<h2>Why</h2>
+
+<p>steamy has several advantages over mysqldump (and many disadvantages).</p>
+
+<p>The main goal of steamy is to make it easy to backup remote MySQL databases. steamy makes database backups fast by relying on SequelPro Saved connections, SSH public keys to the MySQL server your trying to backup from and by running gzip on the sql dump before downloading it to your local machine.</p>
+
+<p>This means that steamy has several requirements.</p>
+
+<ol>
+<li>You must have a SequelPro saved connection.</li>
+<li>You must have password-less SSH to the remote server using public keys. </li>
+<li>You must have mysqldump and gzip installed on the remote server.</li>
+</ol><h2>Usage</h2>
+
+<p>Install by running</p>
+
+<pre><code>$ gem install steamy
+</code></pre>
+
+<p>steamy will look for a YAML file located in ~/.steamy which specifies the SequelPro saved connections directory.</p>
+
+<p>The format of the file should look like:</p>
+
+<pre><code>---
+:saved_connections: /path/to/db
+</code></pre>
+
+<p>The path supports path expansion so something like <code>~/Databases</code> would work too.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/benubois">benubois</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-172060-6");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
