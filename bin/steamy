@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #/ Usage: steamy HOST DATABASE
 #/
-require 'steamy'
+require 'boot'
 require 'optparse'
 
 def usage
@@ -20,6 +20,12 @@ optparse = OptionParser.new do |opts|
     exit 0
   end
 
+  opts.on('-d', '--databases HOST') do |host|
+		instance = Steamy::App.new(host)
+		instance.available_databases
+		exit 0
+  end
+
   opts.on('-h', '--help', 'Display help info') do
     usage
     exit 0
@@ -28,7 +34,7 @@ end
 
 begin
   optparse.parse!
-  
+
   # The url has no flag and will be in ARGV[0] if it's set
   options[:host] = ARGV[0] || nil
   options[:database] = ARGV[1] || nil
@@ -42,5 +48,5 @@ rescue OptionParser::InvalidOption, OptionParser::MissingArgument
   exit 1
 end
 
-preview = Steamy::Steamy.new(options[:host], options[:database])
-preview.mysqldump
+instance = Steamy::App.new(options[:host], options[:database])
+instance.dump

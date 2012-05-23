@@ -1,26 +1,25 @@
-require 'rubygems'
 require 'plist'
-require 'pp'
 
 module Steamy
   class SequelPro
     
     attr_reader :connections
     
-    def initialize(settings)
-      @settings = settings
+    def initialize
       @connections = connections
     end
     
     def connections
       connections = {}
       
-      Dir.chdir(@settings[:saved_connections])
+      Dir.chdir(Steamy.config[:saved_connections])
 
       # For each vhost replace the DOCUMENT_ROOT and write back out to sites-enabled
       Dir.glob("*.spf") do |file|
          connection = Plist::parse_xml(file)
-         connections[connection['data']['connection']['ssh_host']] = connection['data']['connection']
+         unless connection['data']['connection']['ssh_host'].nil?
+           connections[connection['data']['connection']['ssh_host']] = connection['data']['connection']
+         end
       end
       
       connections
@@ -28,10 +27,12 @@ module Steamy
     
     def available_connections
       keys = @connections.keys
-      keys.reject! { |name| name.nil? }
       keys.sort!
-      keys.each do |name|
-        puts name
+    end
+    
+    def list
+      available_connections.each do |connection|
+        puts connection
       end
     end
     
