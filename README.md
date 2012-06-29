@@ -8,7 +8,7 @@ Why
 
 steamy has several advantages over mysqldump (and many disadvantages).
 
-The main goal of steamy is to make it easy to backup remote MySQL databases. steamy makes database backups fast by relying on SequelPro Saved connections, SSH public keys to the MySQL server your trying to backup from and by running gzip on the sql dump before downloading it to your local machine.
+The main goal of steamy is to make it easy to backup remote MySQL databases. steamy makes database backups fast by relying on SequelPro Saved connections, SSH public keys and by running gzip on the sql dump while downloading it to your local machine.
 
 This means that steamy has several requirements.
 
@@ -16,8 +16,8 @@ This means that steamy has several requirements.
 2. You must have password-less SSH to the remote server using public keys. 
 3. You must have mysqldump and gzip installed on the remote server.
 
-Usage
------
+Installation 
+------------
 
 Install by running
 
@@ -31,3 +31,14 @@ The format of the file should look like:
     :saved_connections: /path/to/db
 
 The path supports path expansion so something like `~/Databases` would work too.
+
+Usage
+-----
+
+    $ steamy HOSTNAME 
+    
+In this usage steamy will give you a list of databases available on HOSTNAME and let you pick one.
+
+    $ steamy HOSTNAME DATABASE
+
+In this usage the DATABASE will be downloaded from HOSTNAME.
